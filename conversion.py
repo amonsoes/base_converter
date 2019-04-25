@@ -32,6 +32,11 @@ class ConverterWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     # convert from decimal
                     if line_edit.objectName() == "lineEdit":
 
+                        for digit in line_edit.text():
+                            if digit not in ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]:
+                                line_edit.setText("INVALID ENTRY")
+                                return None
+
                         if other.objectName() == "lineEdit":
                             other.setText(line_edit.text())
                         elif other.objectName() == "lineEdit_2":
@@ -43,6 +48,11 @@ class ConverterWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
                     # convert from binary
                     if line_edit.objectName() == "lineEdit_2":
+
+                        for digit in line_edit.text():
+                            if digit not in ["0", "1"]:
+                                line_edit.setText("INVALID ENTRY")
+                                return None
 
                         if other.objectName() == "lineEdit":
                             other.setText(str(int(line_edit.text(), 2)))
@@ -67,6 +77,11 @@ class ConverterWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
                     # convert from octal
                     if line_edit.objectName() == "lineEdit_4":
+
+                        for digit in line_edit.text():
+                            if digit not in ["0", "1", "2", "3", "4", "5", "6", "7"]:
+                                line_edit.setText("INVALID ENTRY")
+                                return None
 
                         if other.objectName() == "lineEdit":
                             other.setText(str(int(line_edit.text(), 8)))
