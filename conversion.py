@@ -2,7 +2,7 @@ from PyQt5 import QtWidgets
 from base_converter import Ui_MainWindow
 
 
-class ConverterWindow(QtWidgets.QMainWindow,Ui_MainWindow):
+class ConverterWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def __init__(self):
 
@@ -26,7 +26,7 @@ class ConverterWindow(QtWidgets.QMainWindow,Ui_MainWindow):
     def do_conversion(self):
         for line_edit in self.line_list:
             if line_edit.text() != "":
-                print(line_edit.objectName(),line_edit.text())
+                print(line_edit.objectName(), line_edit.text())
                 for other in self.line_list:
 
                     # convert from decimal
@@ -34,13 +34,10 @@ class ConverterWindow(QtWidgets.QMainWindow,Ui_MainWindow):
 
                         if other.objectName() == "lineEdit":
                             other.setText(line_edit.text())
-
                         elif other.objectName() == "lineEdit_2":
                             other.setText(str(bin(int(line_edit.text())))[2:])
-
                         elif other.objectName() == "lineEdit_3":
                             other.setText(str(hex(int(line_edit.text())))[2:].upper())
-
                         elif other.objectName() == "lineEdit_4":
                             other.setText(str(oct(int(line_edit.text())))[2:])
 
@@ -49,31 +46,22 @@ class ConverterWindow(QtWidgets.QMainWindow,Ui_MainWindow):
 
                         if other.objectName() == "lineEdit":
                             other.setText(str(int(line_edit.text(), 2)))
-
                         elif other.objectName() == "lineEdit_2":
                             other.setText(line_edit.text())
-
                         elif other.objectName() == "lineEdit_3":
                             other.setText(str(hex(int(line_edit.text(), 2)))[2:].upper())
-
                         elif other.objectName() == "lineEdit_4":
                             other.setText(str(oct(int(line_edit.text(), 2)))[2:])
-
 
                     # convert from hex
                     if line_edit.objectName() == "lineEdit_3":
 
                         if other.objectName() == "lineEdit":
                             other.setText(str(int(line_edit.text(), 16)))
-
                         elif other.objectName() == "lineEdit_2":
                             other.setText(str(bin(int(line_edit.text(), 16)))[2:])
-
-
                         elif other.objectName() == "lineEdit_3":
                             other.setText(line_edit.text())
-
-
                         elif other.objectName() == "lineEdit_4":
                             other.setText(str(oct(int(line_edit.text(), 16)))[2:])
 
@@ -82,22 +70,12 @@ class ConverterWindow(QtWidgets.QMainWindow,Ui_MainWindow):
 
                         if other.objectName() == "lineEdit":
                             other.setText(str(int(line_edit.text(), 8)))
-
                         elif other.objectName() == "lineEdit_2":
                             other.setText(str(bin(int(line_edit.text(), 8)))[2:])
-
                         elif other.objectName() == "lineEdit_3":
                             other.setText(str(hex(int(line_edit.text(), 8)))[2:].upper())
-
                         elif other.objectName() == "lineEdit_4":
                             other.setText(line_edit.text())
-
-
-
-
-
-
-
 
     def analyze_input(self):
         pass
