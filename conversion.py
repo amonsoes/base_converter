@@ -10,6 +10,7 @@ class ConverterWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         self.show()
         self.line_list = []
+        self.event_list = []
 
         self.line_list.append(self.lineEdit)
         self.line_list.append(self.lineEdit_2)
@@ -18,15 +19,26 @@ class ConverterWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         self.pushButton.clicked.connect(self.do_conversion)
 
+        self.lineEdit.textEdited.connect(lambda x: self.event_list.append((self.lineEdit.objectName(), x)))
+        self.lineEdit_2.textEdited.connect(lambda x: self.event_list.append((self.lineEdit_2.objectName(), x)))
+        self.lineEdit_3.textEdited.connect(lambda x: self.event_list.append((self.lineEdit_3.objectName(), x)))
+        self.lineEdit_4.textEdited.connect(lambda x: self.event_list.append((self.lineEdit_4.objectName(), x)))
+
     # lineEdit = decimal
     # lineEdit_2 = binary
     # lineEdit_3 = hex
     # lineEdit_4 = octal
 
     def do_conversion(self):
+
+        # clean up space in event list
+        if len(self.event_list) > 10:
+            self.event_list = self.event_list[-10:]
+
+        # go through the line edits to find the one with the edited text
         for line_edit in self.line_list:
-            if line_edit.text() != "":
-                print(line_edit.objectName(), line_edit.text())
+            if line_edit.objectName() == self.event_list[-1][0]:
+                print(self.event_list)
                 for other in self.line_list:
 
                     # convert from decimal
@@ -66,6 +78,12 @@ class ConverterWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     # convert from hex
                     if line_edit.objectName() == "lineEdit_3":
 
+                        for digit in line_edit.text():
+                            if digit not in ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a",
+                                             "b", "c", "d", "e", "f", "A", "B", "C", "D", "E", "F"]:
+                                line_edit.setText("INVALID ENTRY")
+                                return None
+
                         if other.objectName() == "lineEdit":
                             other.setText(str(int(line_edit.text(), 16)))
                         elif other.objectName() == "lineEdit_2":
@@ -91,9 +109,3 @@ class ConverterWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                             other.setText(str(hex(int(line_edit.text(), 8)))[2:].upper())
                         elif other.objectName() == "lineEdit_4":
                             other.setText(line_edit.text())
-
-    def analyze_input(self):
-        pass
-
-
-
