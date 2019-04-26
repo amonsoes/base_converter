@@ -35,6 +35,9 @@ class Ui_MainWindow(object):
 "QMainWindow\n"
 "{\n"
 "    background : #282828;\n"
+"    min-width : 470px;\n"
+"    min-height : 700px;\n"
+"    opacity* : 100;\n"
 "}\n"
 "\n"
 "QFrame#background\n"
@@ -194,6 +197,7 @@ class Ui_MainWindow(object):
         self.label_3.setText(_translate("MainWindow", "Hex"))
         self.label_4.setText(_translate("MainWindow", "Octal"))
         self.pushButton.setText(_translate("MainWindow", "Convert"))
+
 
 if __name__ == "__main__":
     import sys

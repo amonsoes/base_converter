@@ -1,8 +1,10 @@
-from PyQt5 import QtWidgets
+from PyQt5 import QtWidgets, QtCore
 from base_converter import Ui_MainWindow
 
 
 class ConverterWindow(QtWidgets.QMainWindow, Ui_MainWindow):
+
+    resized = QtCore.pyqtSignal()
 
     def __init__(self):
 
@@ -23,6 +25,14 @@ class ConverterWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.lineEdit_2.textEdited.connect(lambda x: self.event_list.append((self.lineEdit_2.objectName(), x)))
         self.lineEdit_3.textEdited.connect(lambda x: self.event_list.append((self.lineEdit_3.objectName(), x)))
         self.lineEdit_4.textEdited.connect(lambda x: self.event_list.append((self.lineEdit_4.objectName(), x)))
+        self.resized.connect(self.resized_function)
+
+    def resizeEvent(self, event):
+        self.resized.emit()
+        return super(ConverterWindow, self).resizeEvent(event)
+
+    def resized_function(self):
+        print(self.centralWidget().objectName())
 
     # lineEdit = decimal
     # lineEdit_2 = binary
