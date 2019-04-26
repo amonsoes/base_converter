@@ -38,7 +38,6 @@ class ConverterWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # go through the line edits to find the one with the edited text
         for line_edit in self.line_list:
             if line_edit.objectName() == self.event_list[-1][0]:
-                print(self.event_list)
                 for other in self.line_list:
 
                     # convert from decimal
