@@ -36,6 +36,8 @@ class Ui_MainWindow(object):
 "{\n"
 "    background : #282828;\n"
 "    min-width : 470px;\n"
+"    max-height : 700px;\n"
+"    max-width : 470px;\n"
 "    min-height : 700px;\n"
 "    opacity* : 100;\n"
 "}\n"
@@ -191,7 +193,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "QConverter"))
         self.label.setText(_translate("MainWindow", "Decimal"))
         self.label_2.setText(_translate("MainWindow", "Binary"))
         self.label_3.setText(_translate("MainWindow", "Hex"))
